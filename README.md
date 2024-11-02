@@ -7,7 +7,9 @@ https://github.com/user-attachments/assets/41830ff3-6ac6-4b5a-be35-4429c571aa97
 These nodes are built to work with the [ComfyUI-MochiWrapper](https://github.com/kijai/ComfyUI-MochiWrapper) nodes and soon will work with native ComfyUI Mochi too.
 For now please follow the installation for the wrapper.
 
-There are no other requirements.
+Then git clone this repo into your `ComfyUI/custom_nodes/` directory or use the ComfyUI Manager to install (when this repo is added there).
+
+There are no additional requirements.
 
 
 ## How to Use
