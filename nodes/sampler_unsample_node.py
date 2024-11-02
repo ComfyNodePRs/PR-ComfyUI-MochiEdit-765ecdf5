@@ -13,7 +13,7 @@ class MochiUnsamplerNode:
         return {
             "required": {
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                "gamma": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 30.0, "step": 0.01}),
+                "gamma": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 30.0, "step": 0.01}),
             }
         }
 
