@@ -330,7 +330,7 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Mochi_preview_00042.mp4",
+            "filename": "Mochi_preview_00043.mp4",
             "subfolder": "",
             "type": "temp",
             "format": "video/h264-mp4",
@@ -339,64 +339,6 @@
           "muted": false
         }
       }
-    },
-    {
-      "id": 4,
-      "type": "DownloadAndLoadMochiModel",
-      "pos": {
-        "0": 275,
-        "1": -123
-      },
-      "size": {
-        "0": 364.4028015136719,
-        "1": 174
-      },
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "trigger",
-          "type": "CONDITIONING",
-          "link": null,
-          "shape": 7
-        },
-        {
-          "name": "compile_args",
-          "type": "MOCHICOMPILEARGS",
-          "link": null,
-          "shape": 7
-        }
-      ],
-      "outputs": [
-        {
-          "name": "mochi_model",
-          "type": "MOCHIMODEL",
-          "links": [
-            72,
-            81
-          ],
-          "slot_index": 0
-        },
-        {
-          "name": "mochi_vae",
-          "type": "MOCHIVAE",
-          "links": [
-            23
-          ],
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "DownloadAndLoadMochiModel"
-      },
-      "widgets_values": [
-        "mochi_preview_dit_bf16.safetensors",
-        "mochi_preview_vae_bf16.safetensors",
-        "fp8_e4m3fn",
-        "sdpa",
-        false
-      ]
     },
     {
       "id": 15,
@@ -642,7 +584,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [
         {
@@ -719,12 +661,12 @@
         "0": 855,
         "1": 760
       },
-      "size": [
-        210,
-        106
-      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
       "flags": {},
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -755,10 +697,10 @@
       },
       "size": {
         "0": 210,
-        "1": 106
+        "1": 130
       },
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -777,7 +719,8 @@
       "widgets_values": [
         50,
         0.025,
-        15
+        15,
+        1
       ]
     },
     {
@@ -830,10 +773,10 @@
       },
       "size": {
         "0": 210,
-        "1": 106
+        "1": 130
       },
       "flags": {},
-      "order": 6,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -852,7 +795,8 @@
       "widgets_values": [
         50,
         0.025,
-        15
+        15,
+        1
       ]
     },
     {
@@ -902,6 +846,64 @@
         "",
         1,
         true
+      ]
+    },
+    {
+      "id": 4,
+      "type": "DownloadAndLoadMochiModel",
+      "pos": {
+        "0": 275,
+        "1": -123
+      },
+      "size": {
+        "0": 364.4028015136719,
+        "1": 174
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "trigger",
+          "type": "CONDITIONING",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "compile_args",
+          "type": "MOCHICOMPILEARGS",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mochi_model",
+          "type": "MOCHIMODEL",
+          "links": [
+            72,
+            81
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "mochi_vae",
+          "type": "MOCHIVAE",
+          "links": [
+            23
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadMochiModel"
+      },
+      "widgets_values": [
+        "mochi_preview_dit_bf16.safetensors",
+        "mochi_preview_vae_decoder_bf16.safetensors",
+        "fp8_e4m3fn",
+        "sdpa",
+        false
       ]
     }
   ],
@@ -1128,10 +1130,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.5054470284992959,
+      "scale": 0.8140274938684012,
       "offset": [
-        337.9428631999913,
-        348.7213310792326
+        -57.71921419283249,
+        268.15947170826763
       ]
     }
   },
