@@ -4,7 +4,7 @@ from comfy.cli_args import args, LatentPreviewMethod
 from comfy.taesd.taesd import TAESD
 import comfy.model_management
 import comfy.utils
-
+from tqdm import tqdm
 
 MAX_PREVIEW_RESOLUTION = args.preview_size
 
@@ -68,6 +68,7 @@ def prepare_callback(model, steps, x0_output_dict=None):
     previewer = get_previewer()
 
     pbar = comfy.utils.ProgressBar(steps)
+    tqdm_pbar = tqdm(total=steps, desc="Reverse sampling", unit="it", leave=False)
     def callback(step, x0, x, total_steps):
         if x0_output_dict is not None:
             x0_output_dict["x0"] = x0
@@ -75,6 +76,7 @@ def prepare_callback(model, steps, x0_output_dict=None):
         if previewer:
             preview_bytes = previewer.decode_latent_to_preview_image(preview_format, x0)
         pbar.update_absolute(step + 1, total_steps, preview_bytes)
+        tqdm_pbar.update(1)
     return callback
 
 

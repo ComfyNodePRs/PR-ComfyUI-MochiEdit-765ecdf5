@@ -25,22 +25,16 @@ def get_model_fn(model):
     return model_fn
 
 
-def get_sample_args(model, cond_embeds, uncond_embeds, latent_dims):
+def get_sample_args(model, cond_embeds, uncond_embeds):
     cond_args = {
         "y_mask": [cond_embeds["attention_mask"].to(model.device)],
         "y_feat": [cond_embeds["embeds"].to(model.device)]
     }
-    cond_args["packed_indices"] = model.get_packed_indices(
-        cond_args["y_mask"], **latent_dims
-    )
 
     uncond_args = {
         "y_mask": [uncond_embeds["attention_mask"].to(model.device)],
         "y_feat": [uncond_embeds["embeds"].to(model.device)]
     }
-    uncond_args["packed_indices"] = model.get_packed_indices(
-        uncond_args["y_mask"], **latent_dims
-    )
     return cond_args, uncond_args
 
 
