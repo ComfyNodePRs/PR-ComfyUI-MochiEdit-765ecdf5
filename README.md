@@ -13,6 +13,12 @@ Then git clone this repo into your `ComfyUI/custom_nodes/` directory or use the 
 
 There are no additional requirements.
 
+
+
+https://github.com/user-attachments/assets/88a9c4d4-a6d2-4d68-9c07-7fcba32ce84a
+
+
+
 ## How to Use
 
 There is an example workflow in the `example_workflows` directory.
@@ -85,3 +91,5 @@ This is the classic KSampler or SamplerCustom from ComfyUI but for the MochiWrap
   year={2024}
 }
 ```
+
+https://github.com/user-attachments/assets/d1d8e73a-680d-4671-b5f0-b2efd7ac05f2
