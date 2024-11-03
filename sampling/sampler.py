@@ -18,14 +18,14 @@ def run_sampler(model, latents, positive, negative, sigmas, cfg, sampler_fn, add
     
     # prepare latents
     latent_shape = latents.shape
-    latent_dims = dict(lT=latent_shape[2], lW=latent_shape[4], lH=latent_shape[3])
+    
     if add_noise:
         z = add_latent_noise(model, latent_shape, sigmas, latents, generator)
     else:
         z = latents.clone()
 
     # prepare model and args
-    positive, negative = get_sample_args(model, positive, negative, latent_dims)
+    positive, negative = get_sample_args(model, positive, negative)
     model_fn = get_model_fn(model)
     
     # sampling
