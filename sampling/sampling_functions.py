@@ -18,7 +18,7 @@ def mochi_sample(model, z, sigmas, callback=None):
     return z
 
 
-def get_rf_forward_sample_fn(gamma, seed):
+def get_rf_forward_sample_fn(gamma, seed, correction=True):
     # Controlled Forward ODE (Algorithm 1)
     generator = torch.Generator()
     generator.manual_seed(seed)
@@ -30,16 +30,20 @@ def get_rf_forward_sample_fn(gamma, seed):
         N = len(sigmas)-1
         s_in = y0.new_ones([y0.shape[0]])
         for i in trange(N, disable=disable):
-            t_i = i/N 
+            # t_i = i/N 
+            t_i = sigmas[i]
 
             # 6. Unconditional Vector field uti(Yti) = u(Yti, ti, Φ(“”); φ)
             unconditional_vector_field = -model(Y, sigmas[i]*s_in, **extra_args)
             
-            # 7.Conditional Vector field  uti(Yti|y1) = (y1−Yti)/1−ti
-            conditional_vector_field = (y1-Y)/(1-t_i)
-            
-            # 8. Controlled Vector field ti(Yti) = uti(Yti) + γ (uti(Yti|y1) − uti(Yti))
-            controlled_vector_field = unconditional_vector_field + gamma * (conditional_vector_field - unconditional_vector_field)
+            if correction:
+                # 7.Conditional Vector field  uti(Yti|y1) = (y1−Yti)/1−ti
+                conditional_vector_field = (y1-Y)/(1-t_i)
+                
+                # 8. Controlled Vector field ti(Yti) = uti(Yti) + γ (uti(Yti|y1) − uti(Yti))
+                controlled_vector_field = unconditional_vector_field + gamma * (conditional_vector_field - unconditional_vector_field)
+            else:
+                controlled_vector_field = unconditional_vector_field
             
             # 9. Next state Yti+1 = Yti + ˆuti(Yti) (σ(ti+1) − σ(ti))
             Y = Y + controlled_vector_field * (sigmas[i+1] - sigmas[i])
@@ -63,7 +67,8 @@ def get_rf_reverse_sample_fn(latent_image, eta, start_time, end_time, eta_trend)
         eta_values = generate_eta_values(N, start_time, end_time, eta, eta_trend)
         s_in = y0.new_ones([y0.shape[0]])
         for i in trange(N, disable=disable):
-            t_i = i/N 
+            # t_i = i/N 
+            t_i = 1 - sigmas[i]
 
             # 5. Unconditional Vector field uti(Xti) = -u(Xti, 1-ti, Φ(“prompt”); φ)
             # torch.full([latent_shape[0]], sigmas[i], device=X.device)
