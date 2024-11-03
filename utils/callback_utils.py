@@ -68,7 +68,7 @@ def prepare_callback(model, steps, x0_output_dict=None):
     previewer = get_previewer()
 
     pbar = comfy.utils.ProgressBar(steps)
-    tqdm_pbar = tqdm(total=steps, desc="Sampling", unit="it", leave=False)
+    tqdm_pbar = tqdm(total=steps, desc="Sampling", unit="it")
     def callback(step, x0, x, total_steps):
         if x0_output_dict is not None:
             x0_output_dict["x0"] = x0
@@ -84,7 +84,7 @@ def get_callback_fn(model, total_steps):
     callback = prepare_callback(model.dit, total_steps)
     comfy_pbar = comfy.utils.ProgressBar(total_steps)
     if callback is None:
-        tqdm_pbar = tqdm(total=total_steps, desc="Sampling", unit="it", leave=False)
+        tqdm_pbar = tqdm(total=total_steps, desc="Sampling", unit="it")
 
     def callback_fn(args):
         i = args['i']
