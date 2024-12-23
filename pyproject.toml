@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-mochiedit"
+description = "ComfyUI nodes to edit videos using Genmo Mochi"
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/logtd/ComfyUI-MochiEdit"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-MochiEdit"
+Icon = ""
